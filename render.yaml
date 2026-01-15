@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: medical-doc-processor
+    env: python
+    buildCommand: |
+      apt-get update
+      apt-get install -y mupdf mupdf-tools libmupdf-dev
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
