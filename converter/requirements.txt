@@ -1,0 +1,5 @@
+# Essential libraries (required)
+pip install PyMuPDF Pillow
+
+# Optional: For SVG support
+pip install cairosvg

@@ -1,0 +1,60 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+bin/
+lib/
+include/
+
+# Environment variables and secrets
+.env
+.flaskenv
+secrets.toml
+debug.log
+log.txt
+*.log
+
+# Editors and IDEs
+.idea/  # For PyCharm/IntelliJ
+.vscode/ # For VS Code (if you have user-specific settings you don't want to share)
+*.swp   # Vim temporary files
+*~
+
+# OS-specific files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Testing and coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# FastAPI Cloud deployment-specific
+.fastapicloudignore # (if not using FastAPI Cloud deployment)

@@ -1,0 +1,5 @@
+Diagnosis MetastaticCabreast
+MetstomultipleLNs,leftbreast,liverandlung
+C1palliativechemowithpaclitaxelstarted02.12.2025
+ER/PR-negative,Her2neu-3+
+C1THPgivenon15.12.2025.
