@@ -64,3 +64,31 @@ class SupabaseService:
         except Exception as e:
             logger.error(f"Failed to update case summary: {e}")
             return False
+    
+    @classmethod
+    def update_case_failed(cls, case_id: str) -> bool:
+        """
+        Mark a case as failed after AI processing timeout.
+        Sets summary to 'Case creation failed' and processing to false.
+        
+        Args:
+            case_id: UUID of the case
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            client = cls.get_client()
+            
+            # Update the case with failure status
+            result = client.table("cases").update({
+                "summary": "Case creation failed",
+                "processing": False
+            }).eq("id", case_id).execute()
+            
+            logger.info(f"Marked case {case_id} as failed")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Failed to mark case as failed: {e}")
+            return False

@@ -356,8 +356,27 @@ async def process_case(
         print("🔍 POLLING FOR EXTRACTION RESULTS")
         print(f"{'='*60}\n")
         
-        final_summary = AIPipeline.poll_job_status(job_id)
-        logger.info("Extraction completed successfully")
+        try:
+            final_summary = AIPipeline.poll_job_status(job_id)
+            logger.info("Extraction completed successfully")
+        except TimeoutError as timeout_err:
+            # AI model did not return response after 120 attempts
+            logger.error(f"AI processing timed out for case {case_id}: {timeout_err}")
+            print(f"\n{'='*60}")
+            print("❌ AI PROCESSING TIMEOUT")
+            print(f"{'='*60}")
+            print(f"Job ID: {job_id}")
+            print(f"Case ID: {case_id}")
+            print(f"Status: Failed after 120 attempts")
+            print(f"{'='*60}\n")
+            
+            # Update Supabase with failure status
+            SupabaseService.update_case_failed(case_id)
+            
+            return {
+                "status": "error",
+                "message": "Case creation failed - AI processing timed out after 120 attempts"
+            }
         
         print(f"\n{'='*60}")
         print("✅ EXTRACTION COMPLETE")

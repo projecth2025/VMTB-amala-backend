@@ -151,8 +151,9 @@ class AIPipeline:
                 logger.error(f"Job status API call failed: {e}")
                 raise Exception(f"Failed to poll job status: {str(e)}")
         
-        # Polling timed out
-        raise Exception(f"Job polling timed out after {AIPipeline.MAX_POLL_ATTEMPTS * AIPipeline.POLL_INTERVAL} seconds")
+        # Polling timed out after MAX_POLL_ATTEMPTS (120 attempts)
+        logger.error(f"Job polling timed out after {AIPipeline.MAX_POLL_ATTEMPTS} attempts ({AIPipeline.MAX_POLL_ATTEMPTS * AIPipeline.POLL_INTERVAL} seconds)")
+        raise TimeoutError(f"Job polling timed out after {AIPipeline.MAX_POLL_ATTEMPTS} attempts")
 
     @staticmethod
     def build_clinical_data_from_s3_keys(s3_keys_by_doc: Dict[int, List[str]]) -> Dict[str, List[str]]:
