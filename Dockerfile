@@ -30,23 +30,3 @@ EXPOSE 8000
 
 # Start command
 CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
-```
-
-### Step 2: Create `.dockerignore`
-
-Create a file named `.dockerignore`:
-```
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.env
-.venv/
-venv/
-*.log
-.DS_Store
-.git/
-.gitignore
-README.md
-test_api.py
-data/
