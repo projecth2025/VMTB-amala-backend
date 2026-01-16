@@ -23,9 +23,9 @@ app.add_middleware(
 # Include routes
 app.include_router(router)
 
-@app.get("/health", tags=["Health"])
+@app.api_route("/health", methods=["GET", "HEAD"], tags=["Health"])
 async def health_check():
-    """Health check endpoint"""
+    """Health check endpoint - supports both GET and HEAD for uptime monitoring"""
     return {"status": "healthy", "service": "Medical Document Processor"}
 
 if __name__ == "__main__":
