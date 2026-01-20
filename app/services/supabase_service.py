@@ -55,7 +55,8 @@ class SupabaseService:
             # Note: updated_at is automatically managed by Supabase, no need to set it
             result = client.table("cases").update({
                 "summary": summary,
-                "processing": False
+                "processing": False,
+                "summary_status": "unverified"
             }).eq("id", case_id).execute()
             
             logger.info(f"Successfully updated summary for case {case_id}")
